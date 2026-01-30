@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/footer";
 import { PricingCard } from "@/components/features/pricing-card";
 import { getCurrentUser } from "@/lib/auth";
 import { wp } from "@/lib/wordpress";
+import type { Plan } from "@/types";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default async function PricingPage() {
   const user = await getCurrentUser();
 
-  let plans = [];
+  let plans: Plan[] = [];
   try {
     const res = await wp.getPlans();
     plans = res.data;

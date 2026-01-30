@@ -4,11 +4,12 @@ import { Footer } from "@/components/layout/footer";
 import { getCurrentUser } from "@/lib/auth";
 import { wp } from "@/lib/wordpress";
 import { ContentCard } from "@/components/features/content-card";
+import type { ContentItem } from "@/types";
 
 export default async function HomePage() {
   const user = await getCurrentUser();
 
-  let recentContent = [];
+  let recentContent: ContentItem[] = [];
   try {
     const res = await wp.getContentList({ per_page: 3 });
     recentContent = res.data;

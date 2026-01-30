@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/footer";
 import { ContentCard } from "@/components/features/content-card";
 import { getCurrentUser } from "@/lib/auth";
 import { wp } from "@/lib/wordpress";
+import type { ContentItem } from "@/types";
 
 export const metadata: Metadata = {
   title: "Content Library",
@@ -18,7 +19,7 @@ export default async function ContentPage({ searchParams }: ContentPageProps) {
   const user = await getCurrentUser();
   const page = parseInt(searchParams.page || "1", 10);
 
-  let contentData = { data: [] as any[], meta: { total: 0, pages: 0, current_page: 1, per_page: 12 } };
+  let contentData: { data: ContentItem[]; meta: { total: number; pages: number; current_page: number; per_page: number } } = { data: [], meta: { total: 0, pages: 0, current_page: 1, per_page: 12 } };
   try {
     contentData = await wp.getContentList({
       page,
