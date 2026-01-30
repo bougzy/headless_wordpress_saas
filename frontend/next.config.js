@@ -37,10 +37,6 @@ const nextConfig = {
     ];
   },
 
-  // Enable experimental features
-  experimental: {
-    serverActions: true,
-  },
 };
 
 module.exports = nextConfig;
